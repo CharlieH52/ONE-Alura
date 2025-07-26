@@ -1,28 +1,73 @@
-// CONFIG
+// CONFIG VARIABLES
 let startedgame = false;
 let capNumber = 10;
 let userTrys = 3;
-let count = 0;
+let tryCap = 3;
 let secretNumber = set_random_number();
 
-const tryCap = document.getElementById("tryCap");
-const tryButton = document.getElementById("try");
-const resetButton = document.getElementById("reiniciar");
-const finalMsg = document.querySelector("h1");
-const outMsg = document.querySelector(".texto__parrafo");
+const winMessage = "Felicidades! Has ganado.";
+const lossMessage = "Ya no quedan intentos.";
+const defaultMessage = "Selecciona un número.";
 
-function win_game(){
-    finalMsg.innerText = "GANASTE!";
-}
+// DEFAULT DOM ELEMENTS
+const statusClass = ".game-status-text";
 
-function lose_game() {
-    finalMsg.innerText = "UPS!"
-    outMsg.innerText = "Mas suerte para la proxima..."
+// GAME DATA
+const inpNumber = document.getElementById("inpNumber");
+const playButton = document.getElementById("playButton");
+const resetButton = document.getElementById("resetButton");
+
+// GAME STATUS
+const gameTrys = document.querySelector("#tryTag");
+const gameInst = document.querySelector(".game-instructions");
+gameTrys.innerText = `${userTrys}`;
+gameInst.innerText = "Encuentra el numero entre el 1 y el 10.";
+
+// GAME LEVEL
+const easyGame = document.getElementById("easy");
+const midGame = document.getElementById("medium");
+const hardGame = document.getElementById("hard");
+
+function change_status(target, text) {
+    document.querySelector(target).innerText = text;
 }
 
 function get_try_cap_number() {
-    cap = tryCap.value;
+    cap = inpNumber.value;
     return cap;
+}
+
+function check_input(input, cap) {
+    return input > cap ? cap : input;
+}
+
+function plus(){
+    let up = parseInt(inpNumber.value);
+    if (up >= 10) {
+        inpNumber.value = 10;
+    } else {
+        inpNumber.value = up + 1;
+    }
+}
+
+function minus(){
+    let down = parseInt(inpNumber.value);
+    if (down <= 1) {
+        inpNumber.value = 1;
+    } else {
+        inpNumber.value = down - 1;
+    }
+}
+
+function reset_game() {
+    if (resetButton.disabled == false) {
+        resetButton.setAttribute("disabled", "");
+        secretNumber = set_random_number();
+        inpNumber.value = 1;
+        gameTrys.innerText = userTrys;
+        change_status(statusClass, defaultMessage);
+        tryCap = 3;
+    }
 }
 
 function set_random_number() {
@@ -31,37 +76,44 @@ function set_random_number() {
     return randomNumber;
 }
 
-function user_try(sNumber) {
-    let userChoice = tryCap.value;
+// GAME SYSTEM
+function user_try(secretNumber) {
+    let incNumber = inpNumber.value;
 
-    if (userChoice < sNumber) {
-        console.log(`El numero es mayor que ${userChoice}`);
+    if (incNumber < secretNumber) {
+        const higher = `El numero es mayor que ${incNumber}`; 
+        change_status(statusClass, higher);
     }
 
-    if (userChoice > sNumber) {
-        console.log(`E numero es menor que ${userChoice}`);
+    if (incNumber > secretNumber) {
+        const lesser = `El numero es menor que ${incNumber}`;
+        change_status(statusClass, lesser);
     }
 
-    if (userChoice == sNumber) {
-        console.log(`Felicidades, has ganado! El numero es: ${sNumber}.`);
-        win_game();
+    if (incNumber == secretNumber) {
+        const meta = `${secretNumber}`;
+        gameTrys.innerText = meta;
+        change_status(statusClass, winMessage);
     }
 }
 
-tryButton.addEventListener("click", function() {
-    if (count < userTrys) {
+// START THE GAME
+playButton.addEventListener("click", function() {
+    resetButton.removeAttribute("disabled");
+    if (tryCap <= userTrys && tryCap > 0) {
+        tryCap--;
+        gameTrys.innerText = tryCap;
         user_try(secretNumber);
-        count++;
     } else {
-        console.log("Ya no quedan intentos.");
-        lose_game();
+        change_status(statusClass, lossMessage);
     }
-
+    
 });
 
 resetButton.addEventListener("click", function() {
-    if (startedgame == true) {
-        startedgame = false;
-        console.log("Juego detenido");
-    }
+    reset_game();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    change_status(statusClass, defaultMessage);
 });

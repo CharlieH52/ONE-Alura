@@ -23,7 +23,10 @@ body {
     background-repeat: no-repeat;
     height: 100dvh;
     width: 100dvw;
+<<<<<<< HEAD
     left: 20%;
+=======
+>>>>>>> 36542a3 (Juego base completado)
     opacity: 25%;
 }
     

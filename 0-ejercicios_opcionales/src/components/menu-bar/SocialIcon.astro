@@ -1,0 +1,9 @@
+---
+const {name, icon, link, alt} = Astro.props;
+---
+<div class="icon-btn">
+    <a href={link}>
+        <p>{name}</p>
+        <img src={icon} alt={alt}>
+    </a>
+</div>

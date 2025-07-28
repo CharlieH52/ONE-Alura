@@ -1,0 +1,13 @@
+---
+const {name} = Astro.props;
+---
+<div class="exercise-card">
+    <header class="card-title">
+        <h3>{name}</h3>
+        <button class="button">Probar</button>
+    </header>
+    <hr>
+    <main class="card-content">
+        <slot />
+    </main>
+</div>

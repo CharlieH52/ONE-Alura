@@ -1,0 +1,24 @@
+---
+import MainMenu from "../components/menu-bar/MainMenu.astro";
+import "../styles/styles.css";
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>ONE - Ejercicios Opcionales</title>
+</head>
+<body>
+    <div class="main-frame">
+        <MainMenu></MainMenu>
+        <main class="content-frame">
+            <slot />
+        </main>
+        <footer class="credits">
+            <p>Para el bootcamp Oracle Next Generation por Charlie Chan</p>
+        </footer>
+    </div>
+</body>
+</html>

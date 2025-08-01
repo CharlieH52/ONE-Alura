@@ -1,65 +1,10 @@
 ---
-import "../styles/styles.css";
+import ExcersiceCard from "../components/module-sections/ExcersiceCard.astro";
+import ModuleContainer from "../components/module-sections/ModuleContainer.astro";
+import MainFrame from "../layouts/MainFrame.astro";
 ---
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONE - Ejercicios Opcionales</title>
-</head>
-<body>
-    <div class="main-frame">
-        <header class="main-bar">
-            <div class="title">
-                <h1>Ejercicios de programacion</h1>
-            </div>
-            <nav class="social-icons">
-                <div class="icon-btn">
-                    <a href="">
-                        <p>Linkedin</p>
-                        <img src="" alt="">
-                    </a>
-                </div>
-                <div class="icon-btn">
-                    <a href="">
-                        <p>Github</p>
-                        <img src="" alt="">
-                    </a>
-                </div>
-            </nav>
-        </header>
-        <main class="content-frame">
-            <section class="module-section">
-                <h2>Curso 1</h2>
-                <div class="exercise-card">
-                    <header class="card-title">
-                        <h3>Hola Mundo!</h3>
-                        <button class="button">Probar</button>
-                    </header>
-                    <hr>
-                    <main class="card-content">
-                        <p>Contenido...</p>
-                    </main>
-                </div>
-            </section>
-            <section class="module-section">
-                <h2>Curso 2</h2>
-                <div class="exercise-card">
-                    <header class="card-title">
-                        <h3>Hola Mundo!</h3>
-                        <button class="button">Probar</button>
-                    </header>
-                    <hr>
-                    <main class="card-content">
-                        <p>Contenido...</p>
-                    </main>
-                </div>
-            </section>
-        </main>
-        <footer class="credits">
-            <p>Para el bootcamp Oracle Next Generation by Charlie Chan</p>
-        </footer>
-    </div>
-</body>
-</html>
+<MainFrame>
+    <ModuleContainer title="Curso 1">
+        <ExcersiceCard name="Hola mundo!"></ExcersiceCard>
+    </ModuleContainer>
+</MainFrame>

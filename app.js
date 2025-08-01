@@ -37,6 +37,12 @@ function numeric_input(inputName) {
     return anyNumber;
 }
 
+function parse_name(inputName) {
+    let input = inputName;
+    let parsed = input.trim();
+    return parsed;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     if (friends.length >= 1) {
         for (let index = 0; index < friends.length; index++) {
@@ -53,9 +59,10 @@ function agregarAmigo() {
     let numeric = numeric_input(friendName);
     if (checked === false && numeric == false) {
         let item = document.createElement("li");
-        item.textContent = friendName;
+        let parsedInput = parse_name(friendName);
+        item.textContent = parsedInput;
         friendList.appendChild(item);
-        update_list(friendName);
+        update_list(parsedInput);
         reset_field();
     }
 }

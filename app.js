@@ -20,13 +20,21 @@ function reset_field() {
     inputFriend.value = "";
 }
 
-function validate_input(inputName) {
+function void_input(inputName) {
     let isVoid = false;
     if (inputName.length == 0) {
         alert("ERROR: El campo no puede estar vacio.");
         isVoid = true;
     }
     return isVoid;
+}
+
+function numeric_input(inputName) {
+    let anyNumber = /\d/.test(inputName);
+    if (anyNumber == true) {
+        alert("El nombre no puede contener numeros.")
+    }
+    return anyNumber;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -41,8 +49,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function agregarAmigo() {
     let friendName = inputFriend.value;
-    let checked = validate_input(friendName);
-    if (checked === false) {
+    let checked = void_input(friendName);
+    let numeric = numeric_input(friendName);
+    if (checked === false && numeric == false) {
         let item = document.createElement("li");
         item.textContent = friendName;
         friendList.appendChild(item);

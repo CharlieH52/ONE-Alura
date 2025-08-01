@@ -10,7 +10,7 @@
 
 body {
     color: white;
-    height: 100dvh;
+    height: fit-content;
     width: 100dvw;
     font-family: sans-serif;
     background: linear-gradient(#1354A5 0%, #041832 33.33%, #041832 66.67%, #01080E 100%);
@@ -21,8 +21,9 @@ body {
     position: absolute;
     background-image: url("img/code.png");
     background-repeat: no-repeat;
-    height: 100dvh;
-    width: 100dvw;
+    height: 100%;
+    width: 100%;
+    margin: auto;
     opacity: 25%;
 }
     
@@ -91,7 +92,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100dvh;
+    height: 100%;
     align-items: center;
 }
 
